@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ 
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
+  weight: ["300", "400", "500", "600"],
 });
 
-const playfair = Playfair_Display({ 
+const cormorant = Cormorant_Garamond({ 
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-cormorant",
   display: "swap",
+  weight: ["300", "400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -62,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
       <body className="antialiased font-sans">
         {children}
       </body>
