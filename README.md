@@ -14,7 +14,7 @@ KM Homes provides professional property management services, specializing in med
 - Modern UI with Tailwind CSS
 - Smooth animations with Framer Motion
 - SEO optimized
-- Contact forms
+- **Working contact form with email notifications**
 - Property galleries
 - Client testimonials
 
@@ -24,6 +24,7 @@ KM Homes provides professional property management services, specializing in med
 - **Styling:** Tailwind CSS 3
 - **Animations:** Framer Motion
 - **Icons:** React Icons
+- **Email:** Nodemailer with Gmail SMTP
 - **Language:** TypeScript
 - **Deployment:** Vercel
 
@@ -40,12 +41,16 @@ cd kmhomes
 npm install
 ```
 
-3. Run the development server:
+3. Set up email configuration (for contact form):
+   - Copy `.env.local.example` to `.env.local`
+   - Add your Gmail credentials (see Email Setup section below)
+
+4. Run the development server:
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 🏗️ Build
 
@@ -59,6 +64,27 @@ To run the production build locally:
 npm start
 ```
 
+## 📧 Email Setup for Contact Form
+
+The contact form sends emails to karismathicllc@gmail.com using Gmail SMTP.
+
+### Local Development Setup:
+
+1. **Create a Gmail App Password:**
+   - Go to [Google Account Security](https://myaccount.google.com/security)
+   - Enable 2-factor authentication
+   - Search for "App passwords"
+   - Generate a new app password for "Mail"
+   - Copy the 16-character password
+
+2. **Configure Environment Variables:**
+   - Copy `.env.local.example` to `.env.local`
+   - Add your Gmail credentials:
+   ```
+   GMAIL_USER=your-email@gmail.com
+   GMAIL_PASS=your-app-password-here
+   ```
+
 ## 🚢 Deployment to Vercel
 
 ### Option 1: Deploy via Vercel Dashboard (Recommended)
@@ -67,7 +93,9 @@ npm start
 2. Go to [vercel.com](https://vercel.com)
 3. Click "New Project"
 4. Import the GitHub repository
-5. Vercel will automatically detect Next.js settings
+5. **Add Environment Variables:**
+   - Go to Settings → Environment Variables
+   - Add `GMAIL_USER` and `GMAIL_PASS`
 6. Click "Deploy"
 
 ### Option 2: Deploy via Vercel CLI
