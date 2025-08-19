@@ -18,7 +18,7 @@ export default function PropertiesPage() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-cream">
+      <section className="pt-40 pb-24 bg-gradient-to-b from-white to-neutral-50">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -26,10 +26,11 @@ export default function PropertiesPage() {
             transition={{ duration: 0.8 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="font-serif font-light text-neutral-900 mb-6">
+            <span className="inline-block text-primary uppercase tracking-[0.3em] text-sm font-medium mb-4">Our Portfolio</span>
+            <h1 className="font-serif font-light text-neutral-900 mb-8">
               Premium Living Spaces
             </h1>
-            <p className="text-lg text-neutral-700 leading-relaxed">
+            <p className="text-xl text-neutral-600 leading-relaxed">
               Experience the quality and attention to detail that defines every 
               KM Homes managed property. Each space is carefully maintained to 
               provide comfort and style for today&apos;s professionals.

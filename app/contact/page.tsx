@@ -31,7 +31,7 @@ export default function ContactPage() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-cream">
+      <section className="pt-40 pb-24 bg-gradient-to-b from-white to-neutral-50">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -39,10 +39,11 @@ export default function ContactPage() {
             transition={{ duration: 0.8 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="font-serif font-light text-neutral-900 mb-6">
+            <span className="inline-block text-primary uppercase tracking-[0.3em] text-sm font-medium mb-4">Contact Us</span>
+            <h1 className="font-serif font-light text-neutral-900 mb-8">
               Get in Touch
             </h1>
-            <p className="text-lg text-neutral-700 leading-relaxed">
+            <p className="text-xl text-neutral-600 leading-relaxed">
               Ready to experience professional property management? 
               We&apos;d love to hear from you.
             </p>

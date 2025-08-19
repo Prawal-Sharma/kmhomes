@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { usePathname } from "next/navigation";
@@ -14,7 +13,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -33,60 +32,73 @@ export default function Navigation() {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-700 ${
-          isScrolled
-            ? "bg-cream/95 backdrop-blur-md py-4 shadow-sm"
-            : "bg-transparent py-6"
+        className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 ${
+          isScrolled 
+            ? "py-4 shadow-lg" 
+            : "py-6 shadow-sm"
         }`}
       >
-        <div className="container mx-auto px-6">
+        <div className="container-custom">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-3 group">
-              <div className="relative w-10 h-10">
-                <Image
-                  src="/images/logo-transparent.png"
-                  alt="KM Homes"
-                  fill
-                  className="object-contain"
-                />
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="w-12 h-12 bg-gradient-to-br from-sage to-sage-dark rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:shadow-lg transition-all">
+                KM
               </div>
-              <span className="text-lg font-light tracking-wider text-neutral-900 font-serif">
-                KM HOMES
-              </span>
+              <div>
+                <div className="text-2xl font-serif font-medium text-gray-900">
+                  KM Homes
+                </div>
+                <div className="text-xs text-gray-500 uppercase tracking-wider">
+                  Property Management
+                </div>
+              </div>
             </Link>
 
-            {/* Desktop Navigation */}
-            <ul className="hidden lg:flex items-center space-x-12">
+            {/* Desktop Navigation - Fixed spacing */}
+            <div className="hidden lg:flex items-center gap-10">
               {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={`text-xs font-light tracking-[0.2em] uppercase transition-all duration-300 hover:text-primary ${
-                      pathname === link.href
-                        ? "text-primary"
-                        : "text-neutral-700"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-base font-medium transition-all duration-200 hover:text-sage ${
+                    pathname === link.href
+                      ? "text-sage"
+                      : "text-gray-700"
+                  }`}
+                >
+                  {link.label}
+                </Link>
               ))}
-            </ul>
+            </div>
+
+            {/* CTA Button */}
+            <div className="hidden lg:block">
+              <Link
+                href="/contact"
+                className="btn btn-primary"
+              >
+                Get Started
+              </Link>
+            </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-neutral-700"
+              className="lg:hidden p-2 text-gray-700 hover:text-sage transition-colors"
               aria-label="Toggle menu"
             >
-              <HiMenuAlt3 className="w-6 h-6" />
+              {isMobileMenuOpen ? (
+                <HiX className="w-6 h-6" />
+              ) : (
+                <HiMenuAlt3 className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -94,8 +106,7 @@ export default function Navigation() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/50 z-[60] lg:hidden"
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
@@ -103,33 +114,47 @@ export default function Navigation() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed right-0 top-0 h-full w-[80%] max-w-sm bg-cream z-[70] lg:hidden"
+              className="fixed right-0 top-0 h-full w-full max-w-sm bg-white shadow-2xl z-50 lg:hidden"
             >
               <div className="p-6">
-                <button
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="ml-auto block p-2 text-neutral-700"
-                  aria-label="Close menu"
-                >
-                  <HiX className="w-6 h-6" />
-                </button>
-                <ul className="mt-12 space-y-6">
+                <div className="flex items-center justify-between mb-8">
+                  <div className="text-2xl font-serif font-medium text-gray-900">
+                    KM Homes
+                  </div>
+                  <button
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="p-2 text-gray-700 hover:text-sage transition-colors"
+                  >
+                    <HiX className="w-6 h-6" />
+                  </button>
+                </div>
+                
+                <div className="space-y-4">
                   {navLinks.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block text-lg font-light tracking-wider transition-colors ${
-                          pathname === link.href
-                            ? "text-primary"
-                            : "text-neutral-700"
-                        }`}
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`block text-lg font-medium py-2 transition-colors ${
+                        pathname === link.href
+                          ? "text-sage"
+                          : "text-gray-700 hover:text-sage"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
                   ))}
-                </ul>
+                </div>
+                
+                <div className="mt-8">
+                  <Link
+                    href="/contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="btn btn-primary w-full text-center"
+                  >
+                    Get Started
+                  </Link>
+                </div>
               </div>
             </motion.div>
           </>

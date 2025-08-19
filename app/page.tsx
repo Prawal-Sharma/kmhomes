@@ -1,18 +1,18 @@
-import Navigation from "@/components/Navigation";
-import HeroSlideshow from "@/components/HeroSlideshow";
-import { IntroSection, ValueSection, TestimonialPreview, CTASection } from "@/components/HomeSections";
-import LuxuryFooter from "@/components/LuxuryFooter";
+import SimpleNav from "@/components/SimpleNav";
+import SimpleHero from "@/components/SimpleHero";
+import { AboutSection, ServicesSection, TestimonialSection, CTASection } from "@/components/SimpleSections";
+import SimpleFooter from "@/components/SimpleFooter";
 
 export default function Home() {
   return (
     <>
-      <Navigation />
-      <HeroSlideshow />
-      <IntroSection />
-      <ValueSection />
-      <TestimonialPreview />
+      <SimpleNav />
+      <SimpleHero />
+      <AboutSection />
+      <ServicesSection />
+      <TestimonialSection />
       <CTASection />
-      <LuxuryFooter />
+      <SimpleFooter />
     </>
   );
 }

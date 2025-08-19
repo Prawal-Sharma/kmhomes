@@ -53,7 +53,7 @@ export default function HeroSlideshow() {
             priority
             quality={90}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
         </motion.div>
       </AnimatePresence>
 
@@ -68,13 +68,13 @@ export default function HeroSlideshow() {
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-white font-serif font-light mb-4">
-                <span className="block">{slides[currentSlide].title}</span>
-                <span className="block text-4xl md:text-5xl mt-2">
+              <h1 className="text-white font-serif font-light mb-6">
+                <span className="block text-3xl md:text-4xl lg:text-5xl">{slides[currentSlide].title}</span>
+                <span className="block text-2xl md:text-3xl lg:text-4xl mt-3 opacity-90">
                   {slides[currentSlide].subtitle}
                 </span>
               </h1>
-              <p className="text-white/90 text-lg font-light max-w-2xl mx-auto mb-10">
+              <p className="text-white/80 text-lg md:text-xl font-light max-w-2xl mx-auto mb-12 leading-relaxed">
                 Professional property management serving modern professionals
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
